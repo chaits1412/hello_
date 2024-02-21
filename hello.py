@@ -7,4 +7,3 @@ def factorial(n):
 number = 5
 result = factorial(number)
 print(f"the factorial of {number} is {result}.")
-
