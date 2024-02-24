@@ -1,0 +1,31 @@
+name: Create Log File
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create log file
+      run: |
+        # Create log file
+        touch mylog.log
+
+    - name: Write to log file
+      run: |
+        # Write message to log file
+        echo "Hello, world!" >> mylog.log
+
+    - name: Upload log file
+      uses: actions/upload-artifact@v2
+      with:
+        name: mylog
+        path: mylog.log
