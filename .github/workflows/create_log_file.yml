@@ -1,0 +1,25 @@
+name: Create Log File
+
+on:
+  push:
+    paths:
+      - '**/*'
+
+jobs:
+  create_log:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Create Log File
+        run: echo "Log entry: $(date)" >> log.txt
+
+      - name: Commit Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add log.txt
+          git commit -m "Add log entry by GitHub Actions"
+          git push
