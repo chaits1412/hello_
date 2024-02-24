@@ -1,0 +1,30 @@
+name: Create Log File
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch
+
+jobs:
+  create-log:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Log File
+        run: |
+          echo "Workflow executed on $(date)" > log.txt
+          echo "Additional log details..." >> log.txt
+          
+          # Optionally, you can print the log content
+          cat log.txt
+
+      - name: Commit and push log file
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add log.txt
+          git commit -m "Add log file"
+          git push
